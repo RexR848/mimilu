@@ -1,514 +1,79 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Para mimilu</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Kalam:wght@300;400;700&display=swap');
+<meta charset="UTF-8">
+<title>Días</title>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Georgia", "Times New Roman", serif;
+    }
 
-        body {
-            background-color: #333;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            padding: 20px;
-        }
+    body {
+        background-color: #000;
+        color: #cfcfcf;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
 
-        .carta-contenedor {
-            width: 90%;
-            max-width: 600px;
-            padding: 40px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            position: relative;
-            background-color: #f7e6c9;
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><text x="50" y="50" font-size="20" font-family="Arial" fill="#000" opacity="0.1" text-anchor="middle" dominant-baseline="middle">📜</text></svg>');
-            font-family: 'Kalam', cursive;
-            color: #3e312a;
-            line-height: 1.6;
-            text-align: left;
-            border: 1px solid #c9b38c;
-        }
+    .titulo {
+        font-size: 28px;
+        margin-bottom: 25px;
+        color: #bfbfbf;
+    }
 
-        .carta-contenedor::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            box-shadow: 
-                0 0 15px rgba(0, 0, 0, 0.8) inset,
-                0 0 0 10px #704214 inset,
-                0 0 0 12px #964b00 inset,
-                0 0 0 14px #a0522d inset,
-                0 0 0 20px rgba(0, 0, 0, 0.05);
-            pointer-events: none;
-            z-index: 1;
-        }
+    .contador {
+        font-size: 64px;
+        font-weight: bold;
+        margin-bottom: 35px;
+        color: #ffffff;
+    }
 
-        h1 {
-            font-family: 'Permanent Marker', cursive;
-            font-size: 2.5em;
-            color: #b7322c;
-            text-align: center;
-            margin-bottom: 20px;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
-        }
-
-        .fecha {
-            font-family: 'Kalam', cursive;
-            font-size: 0.9em;
-            color: #3e312a;
-            text-align: right;
-            margin-bottom: 10px;
-        }
-
-        p {
-            margin-bottom: 1.5em;
-            text-indent: 10px;
-            font-size: 1.1em;
-        }
-
-        .firma {
-            text-align: right;
-            margin-top: 30px;
-            font-size: 1.2em;
-            color: #3e312a;
-            font-family: 'Permanent Marker', cursive;
-        }
-
-        .boton-contenedor {
-            text-align: center;
-            margin-top: 30px;
-        }
-
-        .boton-sorpresa {
-            background-color: #b7322c;
-            color: white;
-            padding: 10px 20px;
-            border: 2px solid #704214;
-            border-radius: 5px;
-            cursor: pointer;
-            font-family: 'Permanent Marker', cursive;
-            font-size: 1.2em;
-            transition: background-color 0.3s, transform 0.1s;
-        }
-
-        .boton-sorpresa:hover {
-            background-color: #8c2520;
-            transform: scale(1.05);
-        }
-
-        .boton-sorpresa:active {
-            transform: scale(0.98);
-        }
-
-        /* --- ESTILOS DEL POPUP RESPONSIVE --- */
-
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-            padding: 10px; /* Margen para que no pegue a los bordes en cel */
-            box-sizing: border-box;
-        }
-
-        .popup-card {
-            background: #8e44ad;
-            /* IMPORTANTE: overflow auto permite scroll si el contenido es muy alto */
-            overflow-y: auto; 
-            overflow-x: hidden;
-            position: relative;
-            box-shadow: 0 0 20px rgba(165, 55, 253, 0.5);
-            border: 2px solid #000;
-            width: 0;
-            height: 5px;
-            max-height: 90vh; /* Máximo 90% de la altura de la pantalla */
-            border-radius: 10px;
-        }
-
-        .popup-animado {
-            animation: abrirPopup 1.5s forwards ease-in-out;
-        }
-
-        /* Animación ajustada para altura automática */
-        @keyframes abrirPopup {
-            0% { width: 0; height: 5px; opacity: 0; }
-            50% { width: 90%; max-width: 800px; height: 5px; opacity: 1; }
-            100% { width: 95%; max-width: 800px; height: auto; opacity: 1; padding-bottom: 20px; }
-        }
-
-        .close-btn {
-            position: absolute;
-            top: 10px; right: 20px;
-            color: white;
-            font-size: 30px;
-            cursor: pointer;
-            z-index: 10;
-        }
-
-        .galeria-regalos {
-            display: flex;
-            gap: 10px;
-            /* Quitamos altura fija, dejamos min-height */
-            min-height: 350px; 
-            padding: 20px;
-            opacity: 0;
-            animation: fadeIn 1s 1.5s forwards;
-        }
-
-        @keyframes fadeIn { to { opacity: 1; } }
-
-        .tarjeta-regalo {
-            flex: 1;
-            position: relative;
-            cursor: pointer;
-            transition: flex 0.5s ease;
-            overflow: hidden;
-            border: 2px solid #000;
-            border-radius: 10px;
-            /* Altura mínima para que se vea la imagen */
-            min-height: 300px; 
-        }
-
-        .tarjeta-regalo:hover {
-            flex: 3;
-        }
-
-        .imagen-bg {
-            width: 100%;
-            height: 100%;
-            background-size: cover;
-            background-position: center;
-            transition: transform 0.5s;
-        }
-
-        .info-regalo {
-            position: absolute;
-            bottom: -150px; /* Oculto más abajo */
-            left: 0;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.95);
-            padding: 10px;
-            transition: bottom 0.3s;
-            text-align: center;
-            font-family: Arial, sans-serif;
-            font-size: 0.9em;
-        }
-
-        .tarjeta-regalo:hover .info-regalo {
-            bottom: 0;
-        }
-
-        #vistaFormulario {
-            padding: 40px;
-            font-family: Arial, sans-serif;
-            color: white;
-            opacity: 0;
-            animation: fadeIn 0.5s forwards;
-        }
-
-        .grupo-input {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 10px;
-        }
-
-        input, textarea {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 10px;
-            border: none;
-            border-radius: 5px;
-            font-family: inherit;
-            box-sizing: border-box; /* Para que el padding no rompa el ancho */
-        }
-
-        .boton-enviar {
-            background: #27ae60;
-            color: white;
-            border: none;
-            padding: 12px 24px;
-            font-size: 1.1em;
-            cursor: pointer;
-            border-radius: 5px;
-            width: 100%;
-            margin-top: 10px;
-        }
-
-        .boton-enviar:hover { background: #2ecc71; }
-
-        /* --- AQUÍ ESTÁ LA MAGIA DEL RESPONSIVE --- */
-        /* Esto se aplica solo en pantallas de celular (menos de 768px) */
-        @media (max-width: 768px) {
-            
-            /* Ajustar textos grandes en celular */
-            h1 { font-size: 1.8em; }
-
-            /* Cambiar la dirección de la galería a COLUMNA (uno abajo de otro) */
-            .galeria-regalos {
-                flex-direction: column;
-                height: auto; /* Altura automática para que crezca */
-            }
-
-            .tarjeta-regalo {
-                width: 100%; /* Ocupar todo el ancho */
-                height: 200px; /* Altura fija para cada tarjeta en celular */
-                min-height: 200px;
-                flex: none; /* Desactivar el efecto flex de estiramiento */
-            }
-
-            /* Desactivar el efecto de estirarse al pasar el dedo/mouse en cel */
-            .tarjeta-regalo:hover {
-                flex: none; 
-            }
-            
-            /* En celular, a veces es mejor que el texto salga siempre o al tocar */
-            /* Aquí dejamos que salga al tocar la imagen */
-
-            /* Ajustar el formulario para que sea una sola columna */
-            .grupo-input {
-                flex-direction: column;
-                gap: 0;
-            }
-            
-            #vistaFormulario {
-                padding: 20px;
-            }
-
-            /* --- AGREGAR ESTO AL FINAL DEL CSS --- */
-            
-            /* Clase para simular el hover en celular mediante JS */
-            .tarjeta-regalo.active {
-                flex: 3; /* Se expande */
-            }
-            .tarjeta-regalo.active .info-regalo {
-                bottom: 0; /* Muestra el texto */
-            }
-        }
-    </style>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-    <script type="text/javascript">
-    (function(){
-        emailjs.init("mt69WidOjj5KoFWWg");
-    })();
-    </script>
+    .mensaje {
+        font-size: 20px;
+        color: #9e9e9e;
+        max-width: 600px;
+        line-height: 1.5;
+    }
+</style>
 </head>
-
 <body>
 
-<div class="carta-contenedor">
-    <div class="fecha">
-        9/12/25 (Una fecha random pq neta no se cuando te daré esto xd)
-    </div>
-    <h1>Para la rarita que encontre:</h1>
-    
-    <p>
-        man, eres mi pendeja favorita JAJJ, somos identicos en pt humor y gustos JAJ,mi mente solo piensa en ti y ese es mi mayor defecto pq soy un apegado de mrd, man eres lit mi mejor amiga, amo jugar mine, roblox , repo, escuchar musica, escucharte a tiiiii, no sabia que la persona con la que jugaba minecraft se iba a quedar en mi corazon de puto marica y se iba a quedar ahi, si te hice mal quiero perdirte perdon, solo es que me siento con miedo de que solo desaparezcas una vez mas de mi vida pq ps ni me mandas mensajes ya xdd ademas de que no nos queda tiempo hasta tu operacion y tengo miedo por que tu eres mi pt mejor amiga, somos spreen y carre (carre god), somos hermanos de distinta madre mannn, pq tu eres la mas linda persona que conoci (ademas eres la unica que juega mine, man yaaaaaa unos cubecraft porfavor neta quiero jugar JAJJ ptm yaa).
-    </p>
-
-    <p>
-        no se que mas decir de ti, todo esto es una bomba de humo para que creas que soy creativo pero solo soy pendejo, facilmente pude enviar esto en chat y aja, deam, perdoname por ser como soy camilu, prometo cambiar, no solo por ti, sino pq estoy cansado de ser asi, yo mismo me doy puto asco JAJAJAJ ni yo me aguanto JAJAJ, solo por favor, deja de dejar todo en visto, me vale verga que tengas novio, actually recuerdo que te dije un dia que yo te apoyaba y deammm🔥 mi camilu ya folla (insertar imagen de hoy follo),
-    </p>
-    <img src="https://i.redd.it/ai56y3icyoj31.jpg" alt="tu:" style="width:40%; min-width: 150px; margin-bottom: 20px; border-radius: 10px; display: block; margin-left: auto; margin-right: auto;"> 
-    
-    <p>
-        peeeeero yo tambien quiero mi tiempo con camilanesa, adoro jugar contigo y hablar de tus cosas o las mias, perdonnnn por todoooooo, yyyyy nomas solo por ke no se como pedir perdon, aqui te dejo un regalo (JAJ maldita carta gey, toda fea dea).
-    </p>
-        <div class="boton-contenedor">
-        <button class="boton-sorpresa" onclick="abrirPopup()">
-            Regalo ‼️‼️‼️🔥🔥🔥
-        </button>
+    <div class="titulo">
+        Días sufriendo por perderte..
     </div>
 
-    <div class="firma">
-        Con todo mi amor, <br>
-        el chupa pollas de Alan ❤️
+    <div class="contador" id="dias">0</div>
+
+    <div class="mensaje">
+        Te extrañaré por siempre y para siempre, hermanita...
     </div>
-</div>
-
-<div id="modalOverlay" class="modal-overlay">
-    <div id="popupCard" class="popup-card">
-        <span class="close-btn" onclick="cerrarPopup()">&times;</span>
-        
-        <div id="vistaSeleccion" class="contenido-fase">
-            <h2 style="text-align: center; color: #fff; margin-bottom: 20px; margin-top: 20px;">Elige tu regalo:</h2>
-            
-            <p id="instrucciones" style="color: #c9b38c; text-align: center; padding: 0 10px; font-size: 0.9em;"> 
-                Antes que nada, mira tu steam 🗣️🗣️ ya te he enviado uno<br>
-                Si quieres un regalo elegible (digital), solo dime cual es y lo hago<br><br>
-                <strong>Instrucciones:</strong><br>
-                💻 PC: Haz clic para elegir.<br>
-                📱 Celular: Toca una vez para ver info, toca de nuevo para elegir.
-            </p>
-            
-            <div class="galeria-regalos">
-                <div class="tarjeta-regalo" onclick="gestionarClick(this, 'Regalo 1')">
-                    <div class="imagen-bg" style="background-image: url('https://imgproxy.eneba.games/_tz6TxFonx4GdQe7GINTi-CoRlCce43Zr9jXVPjVBUc/rs:fit:350/ar:1/czM6Ly9wcm9kdWN0/cy5lbmViYS5nYW1l/cy9wcm9kdWN0cy9s/c2t0b01MUjJobTQ1/a19BU0c2YjVlTVo0/NGM3SDE0WWFsWUkz/ZFdPNUtvLmpwZWc');"></div>
-                    <div class="info-regalo">
-                        <h3>Dead by Daylight</h3>
-                        <p>EL juego del que violence district se copeó, un juego bieeen goddd. JAJ nose esq quiero jugarlo</p>
-                    </div>
-                </div>
-                
-                <div class="tarjeta-regalo" onclick="gestionarClick(this, 'Regalo 2')">
-                    <div class="imagen-bg" style="background-image: url('https://imgs.search.brave.com/m4_ruRJPyf1mFM5FeNSphoWlzVSNxtMHdC7JY_2NzD8/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/bWluZWNyYWZ0Lm5l/dC9jb250ZW50L2Rh/bS9taW5lY3JhZnRu/ZXQvZ2FtZXMvbWlu/ZWNyYWZ0L2tleS1h/cnQvRG93bmxvYWRz/X0JveC1BcnRfVmFu/aWxsYV82MDB4MzM3/QDJ4LmpwZw');"></div>
-                    <div class="info-regalo">
-                        <h3>Minecraft oficial</h3>
-                        <p>Ya tu sabe, no mas cosas de activar minecraft, no mas metodos, tu y minecraft, oficial en tu cuenta.</p>
-                    </div>
-                </div>
-                
-                <div class="tarjeta-regalo" onclick="gestionarClick(this, 'Regalo 3')">
-                    <div class="imagen-bg" style="background-image: url('https://imgs.search.brave.com/Rsyja5yyr3v_pLgtINc_TfbGwkE2wc3_IegggoGl_-I/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9wcmV2/aWV3LnJlZGQuaXQv/cG9yLWZhdm9yLXBv/c3RlbS1zdWFzLW1l/bGhvcmVzLWltYWdl/bnMtZGUtc2hpdHBv/c3QtdjAtbTJjNTBh/NTZudHRkMS5wbmc_/Zm9ybWF0PXBuZyZh/dXRvPXdlYnAmcz1h/M2M3ZGY5ODZjMmZh/MjFlM2Q3NWJiOTcy/YjAwNWU0ZGEzM2Ey/MjA1');"></div>
-                    <div class="info-regalo">
-                        <h3>Regalo sorpresa</h3>
-                        <p>Es fisico, este cuesta bastante y no es solo 1 🥺, pero es algo que llevo meses queriendo dar.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div id="vistaFormulario" class="contenido-fase" style="display: none;">
-            <h2 style="text-align: center; color: #fff;">Datos de Envío</h2>
-            <p style="text-align: center; color: #ddd; font-size: 0.9em;">(Para que llegue sano y salvo)</p>
-            
-            <form id="formEnvio" onsubmit="enviarDatos(event)">
-                <input type="hidden" id="regaloSeleccionado" name="regalo">
-                
-                <div class="grupo-input">
-                    <input type="text" placeholder="Calle y Número" required>
-                    <input type="text" placeholder="Colonia / Asentamiento" required>
-                </div>
-                
-                <div class="grupo-input">
-                    <input type="text" placeholder="Código Postal (CP)" required>
-                    <input type="text" placeholder="Ciudad / Estado" required>
-                </div>
-
-                <input type="text" placeholder="Referencias (Fachada, entre calles...)" class="input-full">
-                <textarea placeholder="Instrucciones adicionales para el repartidor" rows="3"></textarea>
-
-                <button type="submit" class="boton-enviar">¡Listo, enviar!</button>
-            </form>
-        </div>
-    </div>
-</div>
 
 <script>
-    const serviceID = "service_cysqnv8"; 
-    const templateID = "template_oy9upb3"; 
+    function calcularDias() {
+        // Fecha de inicio: 13 de diciembre de 2025
+        const fechaInicio = new Date(2025, 11, 13); // Mes 11 = diciembre
+        const hoy = new Date();
 
-    function abrirPopup() {
-        const overlay = document.getElementById('modalOverlay');
-        const card = document.getElementById('popupCard');
-        
-        overlay.style.display = 'flex';
-        card.classList.remove('popup-animado');
-        void card.offsetWidth; 
-        card.classList.add('popup-animado');
+        // Quitar horas para evitar errores por zona horaria
+        fechaInicio.setHours(0, 0, 0, 0);
+        hoy.setHours(0, 0, 0, 0);
+
+        const diferencia = hoy - fechaInicio;
+        const dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
+
+        document.getElementById("dias").textContent = dias >= 0 ? dias : 0;
     }
 
-    function cerrarPopup() {
-        document.getElementById('modalOverlay').style.display = 'none';
-        setTimeout(() => {
-            document.getElementById('vistaSeleccion').style.display = 'block';
-            document.getElementById('vistaFormulario').style.display = 'none';
-            document.getElementById('formEnvio').reset();
-        }, 500);
-    }
-
-    // Nueva función para manejar el doble toque en celular
-    function gestionarClick(elemento, nombreRegalo) {
-        // Detectar si es celular (pantalla menor a 768px)
-        const esCelular = window.innerWidth <= 768;
-
-        if (!esCelular) {
-            // Si es PC, selecciona directo (como antes)
-            seleccionarRegalo(nombreRegalo);
-        } else {
-            // SI ES CELULAR:
-            
-            // 1. Verificamos si esta tarjeta YA está activa (expandida)
-            if (elemento.classList.contains('active')) {
-                // Si ya estaba activa, significa que es el SEGUNDO toque -> Seleccionar
-                seleccionarRegalo(nombreRegalo);
-            } else {
-                // Si NO estaba activa, es el PRIMER toque -> Solo expandir info
-                
-                // Primero quitamos la clase 'active' de todas las otras tarjetas
-                const todas = document.querySelectorAll('.tarjeta-regalo');
-                todas.forEach(t => t.classList.remove('active'));
-
-                // Activamos solo la que tocó
-                elemento.classList.add('active');
-            }
-        }
-    }
-
-    function seleccionarRegalo(nombreRegalo) {
-        document.getElementById('regaloSeleccionado').value = nombreRegalo;
-
-        if (nombreRegalo === 'Regalo 3') {
-            document.getElementById('vistaSeleccion').style.display = 'none';
-            document.getElementById('vistaFormulario').style.display = 'block';
-        } else {
-            enviarCorreoSilencioso(nombreRegalo, "Digital - No requiere envío");
-        }
-    }
-
-    function enviarDatos(e) {
-        e.preventDefault();
-        
-        const regalo = document.getElementById('regaloSeleccionado').value;
-        const calle = document.querySelector('input[placeholder="Calle y Número"]').value;
-        const colonia = document.querySelector('input[placeholder="Colonia / Asentamiento"]').value;
-        const cp = document.querySelector('input[placeholder="Código Postal (CP)"]').value;
-        const ciudad = document.querySelector('input[placeholder="Ciudad / Estado"]').value;
-        const refs = document.querySelector('input[placeholder="Referencias (Fachada, entre calles...)"]').value;
-        const extra = document.querySelector('textarea').value;
-
-        const mensajeDireccion = `
-            Dirección: ${calle}, ${colonia}, CP: ${cp}, ${ciudad}.
-            Referencias: ${refs}.
-            Notas: ${extra}
-        `;
-
-        enviarCorreoSilencioso(regalo, mensajeDireccion);
-    }
-
-    function enviarCorreoSilencioso(regalo, detalles) {
-        const btn = document.querySelector('.boton-enviar');
-        if(btn) btn.innerText = "Enviando..."; 
-
-        const params = {
-            to_email: "nosoyyodiscord@gmail.com",
-            message: `Regalo elegido: ${regalo}. \nDetalles: ${detalles}`
-        };
-
-        const publicKey = "mt69WidOjj5KoFWWg"; 
-
-        emailjs.send(serviceID, templateID, params, publicKey)
-            .then(() => {
-                if (regalo === 'Regalo 3') {
-                    alert('te voy a doxear culona ❤️');
-                } else {
-                    alert('Regalo elegido, se viene noches de desvelada jugando, deammmm 🔥');
-                }
-                cerrarPopup();
-                if(btn) btn.innerText = "¡Listo, enviar!";
-            })
-            .catch((err) => {
-                console.error('Error EmailJS:', JSON.stringify(err));
-                alert('Error al enviar xd, mándame captura mejor.');
-                if(btn) btn.innerText = "Reintentar";
-            });
-    }
+    calcularDias();
+    setInterval(calcularDias, 60000); // Actualiza cada minuto
 </script>
+
 </body>
 </html>
