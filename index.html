@@ -1,255 +1,79 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Para mimilu</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Kalam:wght@300;400;700&display=swap');
+<meta charset="UTF-8">
+<title>Días</title>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Georgia", "Times New Roman", serif;
+    }
 
-        body {
-            background-color: #1a1a1a;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            padding: 20px;
-        }
+    body {
+        background-color: #000;
+        color: #cfcfcf;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
 
-        .carta-contenedor {
-            width: 95%;
-            max-width: 700px;
-            padding: 40px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.7);
-            position: relative;
-            background-color: #f7e6c9;
-            background-image: url('https://www.transparenttextures.com/patterns/old-paper.png');
-            font-family: 'Kalam', cursive;
-            color: #3e312a;
-            line-height: 1.7;
-            text-align: left;
-            border: 1px solid #c9b38c;
-        }
+    .titulo {
+        font-size: 28px;
+        margin-bottom: 25px;
+        color: #bfbfbf;
+    }
 
-        .nota-inicial {
-            border-bottom: 2px solid #b7322c;
-            margin-bottom: 25px;
-            padding-bottom: 10px;
-            font-weight: 700;
-        }
+    .contador {
+        font-size: 64px;
+        font-weight: bold;
+        margin-bottom: 35px;
+        color: #ffffff;
+    }
 
-        h1 {
-            font-family: 'Permanent Marker', cursive;
-            font-size: 2.2em;
-            color: #b7322c;
-            text-align: center;
-            margin-top: 30px;
-        }
-
-        p { margin-bottom: 1.5em; text-indent: 10px; font-size: 1.1em; }
-
-        .img-centro {
-            display: block;
-            margin: 20px auto;
-            max-width: 80%;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-        }
-
-        .video-centro {
-            display: block;
-            margin: 20px auto;
-            max-width: 90%;
-            border-radius: 10px;
-        }
-
-        .firma {
-            text-align: right;
-            margin-top: 40px;
-            font-size: 1.3em;
-            font-family: 'Permanent Marker', cursive;
-        }
-
-        .boton-contenedor { text-align: center; margin-top: 30px; }
-        .boton-sorpresa {
-            background-color: #b7322c; color: white; padding: 15px 30px;
-            border: none; border-radius: 5px; cursor: pointer;
-            font-family: 'Permanent Marker', cursive; font-size: 1.2em;
-        }
-    </style>
+    .mensaje {
+        font-size: 20px;
+        color: #9e9e9e;
+        max-width: 600px;
+        line-height: 1.5;
+    }
+</style>
 </head>
 <body>
 
-<div class="carta-contenedor">
-    <div class="nota-inicial"></div>
-    <h1>Para mi hermana de otro país</h1>
-    <div class="nota-inicial">
-        Antes de que inicie la carta, te tengo que decir 2 cosas que jamas te dije por miedo a que me critiques.... <br>pero prometeme que no te burlarás o te alejaras ya que por eso jamas lo decia.. <br>pero nos prometimos confianza y te la daré ante todo... mas con el segundo pq es mi problema y no se lo cuento a nadie pero confio en ti, yo confio en ti...<br><br>Tarde 38 horas en hacerte esto, por favor, te ruego que lo leas, ya sea como despedida o como un milagro de navidad..
+    <div class="titulo">
+        Días sufriendo por perderte..
     </div>
 
-    <p>las 2 cosas son:<br>
-    la razon por la que no te hice caso..<br>
-    y<br>
-    un problema de salud mio...</p>
+    <div class="contador" id="dias">0</div>
 
-    <p>
-        primero la razon por la que no te hice caso el dia que me dejaste, no se si lo escuchaste pq me cortó la llamada, pero ese dia como sabes fui a cuidar a una persona en una fiesta y me trataron de la mierda, pero te dije que me queria quedar pq queria ver algo de una persona, esa persona era mi amiga, cami, ella me gusta.., me quede junto a ella por eso. criticame , burlate , hazme sentir mal por ello pero almenos hazlo en chat.. , me quede con ella y ps, esq ella compro droga en esa fiesta camila :c, el algo que queria ver era saber si podia detenerla, pq ella no me gusta por aspecto fisico voz por nada, si me gusta alguien , es por el como es, y ella era super buena, no entiendo pq debio hacer eso, pero compró la droga, me quede para detenerla pero no pude camila, solo me hizo sentir peor y me fui destrozado a casa..
-        no te quise usar.. jamas te quise usar.. yo solo tengo esta confianza contigo para contar lo que me hace mal.. a nadie le cuento por miedo a ser criticado , solo a ti te lo cuento pq tu me haz contado lo tuyo siempre que te pasa algo y te considero una amiga a la que le puedo decir todo.. y no.. no debi.. te extraño mi hermana....
-    </p>
-    <img src="dioss.png" alt="por que lo hizo.." class="img-centro" >
-
-    <p>
-        la segunda cosa es mi problema personal , pero por favor te ruego que no me critiques o te alejes por favor me da mucha inseguridad y casi nadie sabe..
-        no creo que recuerdes pero yo te contaba que cuando me siento mal me dan ganas de vomitar, creo que es la unica vez que casi te lo digo, puess... tengo un problema de salud.. me enferme de covid 19.. y quede con daño pulmonar.. desde que me pasó no estoy bien camila... me canso mas rapido o directamente me termino casi desmayando... el esfuerzo constante hace que mi cuerpo quede mal el dia entero... me cuesta respirar aveces y como dije, cuando estoy mal, no es que quiera vomitar, es que mis pulmones se traban con demasida flema ahogandome... me duele el pecho seguido por x cosa (no recuerdo la explicacion pero es por tema pulmon) y me da miedo que sepas esto.. solo me da panico pero te lo queria decir pq tu me dijiste cuando me pediste ayuda para hablar con tu novio que el llorar te ahogaba, y no se , intente decirte pero no pude... y ahora que tu me dejas, diario en las mañanas al despertar y en la tarde (6pm a adelante) lloro y me ahogo de forma horrible, no queria que supieras que tengo algo igual a ti pero a la vez quiero que sepas que mi salud solo no aguanta tu ausencia, me ahogo y me tengo que pasar horas alado de un bote o algo sacandolo todo... me doy asco, soy un error de dios y el me hace saber de eso dia a dia cuando te recuerdo y me largo a llorar como pt marica ahogandome con mi propio sufrimiento por la perdida de mi hermana....
-        no es extremo, no es algo como asma, no es que necesite estar con oxigeno o algo, solo me ahogo por el daño en pulmones fácilmente y ahora, esta semana ha sido diario, pq desde que te fuiste, lo he sufrido como cuando murio mi padre ...
-    </p>
-    
-    <img src="dolor.png" alt="dolor.." class="img-centro" >
-
-    <p>por favor no te burles o alejes mas.. solo te lo cuento por que confio en ti pq ante todo eres mi hermana..</p>
-
-    <p>y eso mismo es lo que me duele diario... yo no quiero estar contigo por tema pareja o esa mrd, no jodas no entiendo pq lo repites y repites cuando yo te dije no..., yo quiero estar contigo, por que somo hermanitos.... y el que te fueras, me duele como si mi hermana haya muerto 💔</p>
-
-    <p>dicho esto.. y ahora que sabes que me he ahogado mientras escribo esto..</p>
-
-    <div class="nota-inicial"></div>
-    <h1>ahora si.. la carta..</h1>
-    <div class="nota-inicial"></div>
-    <p>parte 1 - (maricon llorando por 1 dia entero)</p>
-
-    <p>hola camila, quiero pedir perdon por mi comportamiento y cada una de las veces donde sientas que te jodi, y lo se.. se que te he pedido muchas veces perdon y mi palabra no importa, pero cami, te extraño como no tienes idea 💔</p>
-
-    <p>el dia que me abandonaste dijiste: <br>
-    "..fuimos algo,no resultó y bueno ok mala ahí pasado pasado pisado,somos amigos te consideraba como un hermano.."</p>
-
-    <p>cami, yo tambien te considero como una hermana, me da asco que creas que aun quiero algo contigo, me da asco cada vez que recuerdas lo que algun dia fuimos, tu solo eres mi hermana y no tienes idea de cuanto te extraño :CC</p>
-
-    <p>de saber que eso te molestaba a este punto ni lo hubiera dicho..</p>
-
-    <p>de tema de tu novio, ya que me dijiste "A el no le gustó lo w paso y a mi tampoco pero sobre todo a mi"</p>
-
-    <p>nunca supe a que te referias :c , yo jamas quise separarlos o algo, y entiendo que los primeros dias hayas querido estar con tu novio, y estoy muy arrepentido de haberme sentido mal, solo fue pq me mentiste y no se mi corazon se sintio mal pq te tengo toda la confianza del mundo y me hiciste eso, pero soy yo el que está mal y lo se cami..</p>
-
-    <p>no debi y me da asco ese comportamiento, por eso los dias siguientes hice todo para que me perdones y te sientas bien con el:C</p>
-
-    <p>cuando te regalaba algo, te preguntaba si a tu novio no le causaba ningun problema por sus celos y me dijiste que no le importaba</p>
-
-    <p>el dia que terminaron en la noche sin dudar te ayude para que vuelvas con el</p>
-
-    <p>te he dicho multiples veces de jugar repo con tu novio o algo asi, donde yo le pagaba el juego</p>
-
-    <p>JAMAS tuve un problema con tu pareja... y me hizo mal que tu creas eso, de hecho despues de tu alejamiento fui con el y le pedi perdon por todo pese a no saber que fue lo que le hice</p>
-
-    <img src="bf.jpeg" alt="Imagen BF" class="img-centro" style="width: 50%;">
-
-    <p>el solo no respondio..</p>
-
-    <p>yo lo unico que busco en ti es amistad, y posta me duele que te hayas ido, me quede sin nadie y me duele camila...</p>
-
-    <p>no te valoré como debi.. sin ti me quedé sin nadie con quien hablar o juagar diario, me quede sin mi hermana 💔</p>
-
-    <p>y preguntale al que sea, esta semana solo he tenido dolor en mi corazon por perder a mi hermana 💔💔</p>
-
-    <p>eres mi mejor amiga, y jamas encontré a alguien como tu, y como siempre te he dicho, vale la pena pelear por tenerte como amiga..</p>
-
-    <p>posta te extraño demasiado, me arde la piel y el corazon cada que pienso enti, rezo por 1 oportunidad de ser tu amigo denuevo y sé que arruine todo...</p>
-<img src="leer.gif" alt="Leer GIF" class="img-centro">
-<p style="text-align: center; font-size: small;">(tu leyendo esta parte de la carta)</p>
-    <p>te he llamado hermanita desde un tiempo, ya que aunque pena me da, me gustó que nos empezaramos a llamar asi, pq es eso, te he dicho multiples veces que eres mi hermana del alma, eres la amiga con la que podia contar mis problemas e inseguridades y tu tambien me las decias, sabiamos de todo acerca de nosotros y te extraño..</p>
-
-    <p>siento que repito muchas cosas en esta carta pero tu perdida me dolio como una muerte familiar, no habia sufrido asi desde la muerte de mi padre.. asi para que sepas cuanto me dolio...</p>
-
-    <p>por favor camila.. perdoname..... se que no quieres continuar la amistad por haberte pedido una estupidez en un juego, y nisiquiera era con ganas de pareja, todo siempre lo vi desde la vista de amigos... desde hace muchos meses se que no quiero estar contigo como pareja, solo me llevo mejor contigo como mi mejor amiga, siempre se me hace mas comodo decirte rarita que "amor" ..</p>
-
-    <p>y perdon si te repito muchas veces el tema noviazgo, pero el que me hayas cortado la amistad diciendolo me dejó un problema pq siento que no has entendido que no he pensado en esa cosa desde mucho</p>
-
-    <p>tu y yo, Hermanos ...</p>
-    <video controls class="video-centro" style="width: 50%;">
-        <source src="extr.mp4" type="video/mp4">
-        Tu navegador no soporta videos, pero era este (https://www.instagram.com/p/DPJliaNDrp0/).
-    </video>
-
-    <p>cami, ruego por que me perdones.. hice una estupidez que no pasó de llorar por mi propia culpa y no quiero perderte solo por eso.. perdoname por no haberte valorado como debi, eres mi puta mejor amiga, eres mi hermana de otro país.. y almenos yo te sigo considerando como mi hermanita.. por favor hablemos... te ruego eso por favor.. no quiero que te vayas camii...</p>
-
-    <p>diario lloro una banda por la perdida de mi hermana...</p>
-
-    <p>por favor.. te ruego que me des una oportunidad mas de tratar de ser un amigo tuyo...</p>
-
-    <p>volvamos a llamarnos... extraño tu voz.. odio no haber guardado los audios lindos... extraño hacer llamada mientras te leo en el chat de wha.. es algo muy tonto el que lo haga pero no sabes lo mucho que lo extraño 💔💔, estoy llorando una banda mientras escribo esto y solo me siento horriblemente mal en mi salud</p>
-
-    <p>he ido con la psicologa, almenos tu sabes que desde antes que me dejaras yo ya iba al psicologo.. ella me ayudara a pasar mis problemas para no volver a hablarte de ellos, ntp te lo juro..</p>
-
-    <p>te ruego que hagamos cosas como antes... volvamos a jugar minecraft como antes,</p>
-
-    <p>no he parado de jugar en el mundo donde nos conocimos al inicio.. quiero hacer beacons pero te quiero esperar para tener a mi hermana cuando esté por prenderlo</p>
-
-    <img src="mine.png" alt="Minecraft 1" class="img-centro">
-    <img src="mine3.jpg" alt="Minecraft 2" class="img-centro">
-
-    <p>o juguemos repo como siempre lo haciamos, no he vuelto a jugar JAMAS desde que te perdi, ni los chicos ni nadie juega repo(esas fueron las unicas veces), y aun asi, sin ti no lo haría. invita a tu novio yo le pago el juego o yo que se pero por favor dejame jugar una vez mas contigo hasta que se haga tarde...</p>
-    <p>Mas ahora que estamos de vacaciones</p>
-    <video controls class="video-centro">
-        <source src="repo.mp4" type="video/mp4">
-        Tu navegador no soporta videos (era un clip de repo, neta abre la pagina en pc o otro lado pq debes ver todo 🥺).
-    </video>
-
-    <video controls class="video-centro">
-        <source src="repo2.mp4" type="video/mp4">
-        Tu navegador no soporta videos (era un clip de repo, neta abre la pagina en pc o otro lado pq debes ver todo 🥺).
-    </video>
-
-    <p>o escuchemos musica juntos, en las mañanas escucho tus canciones que me ponian, me hacen sentir seguro, como si aun estuvieras conmigo o como si aun hablaramos..</p>
-
-    <p>he soñado contigo, ya van 3 veces que sueño contigo y en todas sueño que me vulves a hablar... he tratado de jugar con amigos para no pensar en ti pero como sabes, nunca se juntan para nada, y cuando pasa me termino muteando por que me pongo a llorar pq ellos no son tu, y jamas confiaria en ellos como cuando confie en mi hermana</p>
-    <div class="nota-inicial"></div>
-    <h1>dejame calmarme un poco.</h1>
-    <div class="nota-inicial"></div>
-    <h3 style="text-justify: newspaper;">Parte 2 (Hermanos forever.)</h3>
-
-    <p>hola este es continuacion de lo que escribi antes , hoy escribi el texto de mi condicion de salud que leeiste al inicio de la carta..</p>
-    <p>quiero calmarme un poco pq toda la carta anterior fue yo llorando una banda, entonces calmemonos un poco.</p>
-
-    <img src="camila.jpg" alt="Camila" class="img-centro">
-
-    <p>antes que nada, si no tienes tiempo o quieres ir a cagar antes de seguir , o si eres aca mas tierna y quieres ir por un yogurt y una cobija para seguir, ve ahorita, yo tengo ya mi yogurt, el resto de la carta es yo ""calmado"" (despues de llorar un chingo ya no dan ganas de sentirse mal) y la carta se vuelve mas amistosa okey?, okey..</p>
-
-    <p>primero, usas cositas:</p>
-    <p>1-como estás?, si quieres no me hables pero responde estas dudas en el wha y me bloqueas nose, decia <br>
-    como estás? me preocupa aun tu estado, solo espero que tu pareja te cuide, re tiernos eran</p>
-
-    <p>2-que ha pasado con lo de tu operacion??? me he sentido mal pq no sabre nada de ti, y osea, es grave :c quiero saber si estás bien o el como es que estas.</p>
-
-    <p>3-quiero que sepas que en todo lo separado que estamos te he seguido presumiendo y pese a todo ESTOY ORGULLOSO, de mi hermanita, a todos les cuento las cosas por las que te extraño y son cosas re buenarda, nada de mrds, contigo solo lo god pq eres god</p>
-
-    <p>(esto lo escribo en el dia 3 de programar la pagina) 4-no supe donde meter esto pero quieres jugar free?, milo j hace cositas en free y nose, ig ya queria jugar</p>
-
-
-    <p>umm y ya eso,</p>
-
-    <p>no se si te dije ayer (parte 1 de la carta) que estuve jugando nuestro mundo de mine, porfi porfi, no me saques de ahi, tengo mucho trabajo y proyectos, he minado demasiaaaaaaaaado para seguir el castillo (y creo me quedo chueco 😭)</p>
-
-    <p>Llendo al punto, tu sabes que te extraño demasiado, ojala podamos hacer algo juntos ya, pq te extraño como no tienes idea, eres mi mejor amiga y tu tambien eras una hermana para mi, perdona todos mis errores pq fui un idiota que no penso en ti, por una estupidez mia te perdi y lloro coda dia por la falta de mi hermana</p>
-    <p> dame una oportunidad de demostrarte que para mi, tu eres mi hermana del alma, quiero jugar contigo un mine/roblox/repo lo que sea pero contigo, dejame ser parte de tu vida porfavor te lo ruego :c</p> 
-<p> veamos stranger things?, el 27 sale el nuevo episodio y necesiiiito a mi hermana para verlo, pq ella es la que mas le encanta, hagamos teorias y cosas pero hagamos algo pli</p>
-    
-  <img src="best.png" alt="holaaa" class="img-centro">
-     <p>eres la mas hermosa amistad que he tenido en mi vida, eres la persona en la que mas confio, hoy en esta carta te conté cosas que ni creo mi propia madre sabe, te extraño como no tienes idea y cada noche le rezo a dios por que nos volvamos a encontrar alguna vez, quisiera que esta vez sea diferente, quisiera que mi hermana vuelva, la extraño, no tengo ningun problema con tu novio, como te mostré yo adoro su relacion, es lo mas tierno que te pudo pasar camila <3 no quiero repararlos ni quitarte esa felicidad, tu y yo solo fuimos amigos y punto, solo quiero recuperar la hermosa amistad que tuvimos</p>
-     
-    <img src="esa persona.png" alt="us" class="img-centro" >
-        <p>el unico regalo de navidad que quiero, es a mi amiga devuelta..</p>
-    <div class="boton-contenedor">
-        <P>podemos ser amigos? 🥺</P>
-        <button class="boton-sorpresa" onclick="window.location.href='https://api.whatsapp.com/send?phone=5217731036255&text=%F0%9F%90%88'">Botón de la amistad</button>
+    <div class="mensaje">
+        Te extrañaré por siempre y para siempre, hermanita...
     </div>
 
-    <div class="firma">
-        de snoopy 
-        (Alan)
-    <br>
-        para mi hermanita milu
-    </div>
-</div>
+<script>
+    function calcularDias() {
+        // Fecha de inicio: 13 de diciembre de 2025
+        const fechaInicio = new Date(2025, 11, 13); // Mes 11 = diciembre
+        const hoy = new Date();
+
+        // Quitar horas para evitar errores por zona horaria
+        fechaInicio.setHours(0, 0, 0, 0);
+        hoy.setHours(0, 0, 0, 0);
+
+        const diferencia = hoy - fechaInicio;
+        const dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
+
+        document.getElementById("dias").textContent = dias >= 0 ? dias : 0;
+    }
+
+    calcularDias();
+    setInterval(calcularDias, 60000); // Actualiza cada minuto
+</script>
 
 </body>
 </html>
